@@ -3,3 +3,5 @@ data/
 __pycache__/
 *.pyc
 .pytest_cache/
+bi/.env
+bi/public_dashboard.txt

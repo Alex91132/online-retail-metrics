@@ -1,0 +1,28 @@
+# Metabase + PostgreSQL с витринами из marts/. Поднять: docker compose up -d, затем python bi/setup_metabase.py
+name: retail-bi
+
+services:
+  warehouse:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: retail
+      POSTGRES_USER: retail
+      POSTGRES_PASSWORD: ${WAREHOUSE_PASSWORD:-retail}
+    volumes:
+      - ../marts:/marts:ro                       # CSV-витрины
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U retail -d retail"]
+      interval: 5s
+      retries: 20
+
+  metabase:
+    image: metabase/metabase:v0.64.2
+    ports:
+      - "3030:3000"
+    environment:
+      MB_SITE_LOCALE: ru
+      JAVA_TIMEZONE: Europe/London
+    depends_on:
+      warehouse:
+        condition: service_healthy
