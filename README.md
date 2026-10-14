@@ -60,7 +60,8 @@ cd .. && python bi/setup_metabase.py
 
 ![Клиенты](docs/img/metabase_customers.png)
 
-Тот же дашборд можно собрать в Yandex DataLens — пошаговая инструкция в [DATALENS.md](DATALENS.md).
+Как собрать его руками в интерфейсе Metabase — практикум [bi/PRACTICE.md](bi/PRACTICE.md) (около 30 минут).
+Тот же дашборд в Yandex DataLens — пошаговая инструкция в [DATALENS.md](DATALENS.md).
 
 ## Как сделано
 
