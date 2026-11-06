@@ -62,7 +62,7 @@ cd .. && python bi/setup_metabase.py
 ![Клиенты](docs/img/metabase_customers.png)
 
 Как собрать его руками в интерфейсе Metabase — практикум [bi/PRACTICE.md](bi/PRACTICE.md) (около 30 минут).
-Тот же дашборд в Yandex DataLens — пошаговая инструкция в [DATALENS.md](DATALENS.md).
+Сборка в DataLens — по шагам по алгоритму: [DATALENS.md](DATALENS.md).
 
 ## Как сделано
 
@@ -73,9 +73,9 @@ cd .. && python bi/setup_metabase.py
 | Витрины: заказы, клиенты с RFM, когорты | [`sql/02_marts.sql`](sql/02_marts.sql) |
 | Мост выручки и разложение по факторам методом LMDI (вклады в сумме = всё изменение) | [`src/retail/analysis.py`](src/retail/analysis.py) |
 | Определения метрик, дерево выручки, пороги RFM | [METRICS.md](METRICS.md) |
-| Выгрузки для DataLens | [`marts/`](marts) |
+| Витрины: CSV для дашбордов и загрузки в PostgreSQL | [`marts/`](marts) |
 | Дашборд в Metabase как код: Docker, PostgreSQL, карточки и вкладки через API | [`bi/`](bi) |
-| Тот же дашборд в DataLens — пошагово | [DATALENS.md](DATALENS.md) |
+| Сборка в DataLens — алгоритм по шагам: подключение → датасеты → 13 чартов → 3 вкладки | [DATALENS.md](DATALENS.md) |
 | Тесты: правила очистки, мост и факторы сходятся точно, удержание когорты в месяце 0 = 100 %, **числа из текста записки сверяются с витринами** (19 величин) | [`tests/`](tests) |
 
 Две ловушки, которые разобраны в записке:
