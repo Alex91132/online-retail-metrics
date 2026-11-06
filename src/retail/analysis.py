@@ -91,9 +91,13 @@ def concentration(customers, col="revenue_y2"):
 
 
 def segment_summary(customers):
-    s = customers.groupby("segment").agg(customers=("customer_id", "size"), revenue=("revenue", "sum"),
-                                         revenue_y2=("revenue_y2", "sum"), recency=("recency_days", "median"),
+    """По сегментам: клиенты, выручка за весь период (`revenue_all`, вместе с неполным декабрём 2011)
+    и по годам. Доли считаются от всей выручки сегментов — поэтому 74 % у «Чемпионов» это доля
+    за весь период, а не за год 2."""
+    s = customers.groupby("segment").agg(customers=("customer_id", "size"), revenue_all=("revenue", "sum"),
+                                         revenue_y1=("revenue_y1", "sum"), revenue_y2=("revenue_y2", "sum"),
+                                         recency=("recency_days", "median"),
                                          orders=("orders", "median"))
     s["share_customers"] = s.customers / s.customers.sum()
-    s["share_revenue"] = s.revenue / s.revenue.sum()
-    return s.sort_values("revenue", ascending=False).reset_index()
+    s["share_revenue"] = s.revenue_all / s.revenue_all.sum()
+    return s.sort_values("revenue_all", ascending=False).reset_index()
